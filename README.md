@@ -8,8 +8,8 @@
 <h1>Group Members</h1>
     <ul>
        <li>Member 1:Bashir Alam ID:11220320963</li>
-       <li>Member 2:Shuvo Raha ID:11220320963</li>
-       <li>Member 3:Fariha Rahman Oishee ID:11220320963</li>
+       <li>Member 2:Shuvo Raha ID:11220320949</li>
+       <li>Member 3:Fariha Rahman Oishee ID:11220320967</li>
     </ul>
 <h1>Course Details</h1>
 <ul>
