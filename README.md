@@ -7,7 +7,7 @@
 
 <h1>Group Members</h1>
     <ul>
-       <li>Member 1:Bashir Alam <a  href="bashircse.nubtk@gmail.com">ID:11220320963</a></li>
+       <li>Member 1:[Bashir Alam **ID: 11220320963**](mailto:bashircse.nubtk@gmail.com)</li>
        <li>Member 2:Shuvo Raha ID:11220320949</li>
        <li>Member 3:Fariha Rahman Oishee <a>oisheerahman167@gmail.com</a>ID:11220320967</li>
     </ul>
