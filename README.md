@@ -1,6 +1,9 @@
 <h1>Virtual CPU Emulator</h1>
 
 <h1>Project Description</h1>
+<p>The project will be divided into 10 weeks. Each week, specific tasks will be
+    assigned. Groups will be evaluated based on the accuracy, completeness, and depth
+    of the work submitted.</p>
 
 <h1>Group Members</h1>
     <ul>
@@ -17,4 +20,17 @@
          <li>Department: Computer Science & Engineering</li>
            <li>Instructor: Vashkar Kar (Lecturer)</li>
             <li>Institute: Northern University of Business & Technology, Khulna</li>
+             <li>Website : https://nubtkhulna.ac.bd </li>
+</ul>
+
+<h1>Scope: </h1>
+<p>This project is to create a basic virtual CPU emulator that replicates core CPU processes, like instruction execution and memory management.</p>
+
+<h1>Objective</h1>
+<p>The main objective is to deeply understand CPU design and functionality by building a virtual emulator from scratch. This involves:</p>
+
+<ul>
+    <li>Build a Functional CPU Core (Fetch-Decode-Execute Cycle)</li>
+    <li>Create an Instruction Set Architecture (ISA)</li>
+    <li>Develop Memory and Register Management</li>
 </ul>
