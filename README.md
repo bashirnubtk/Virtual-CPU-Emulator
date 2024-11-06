@@ -34,3 +34,12 @@
     <li>Create an Instruction Set Architecture (ISA)</li>
     <li>Develop Memory and Register Management</li>
 </ul>
+
+## Weekly Tasks Overview 1
+
+### [Week 1: Project Planning & Setup](Week 1)
+- **Objective:** Define project scope, gather resources, set up development environment.
+- **Tasks:**
+  - Outline the features of the virtual CPU.
+  - Choose a programming language (Python/C++) and tools.
+  - Set up version control (e.g., GitHub).
