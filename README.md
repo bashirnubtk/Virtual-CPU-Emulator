@@ -35,7 +35,7 @@
     <li>Develop Memory and Register Management</li>
 </ul>
 
-## Weekly Tasks Overview 1
+## Weekly Tasks Overview 
 
 ### [Week 1: Project Planning & Setup](https://github.com/bashirnubtk/Virtual-CPU-Emulator/tree/main/Week%201)
 - **Objective:** Define project scope, gather resources, set up development environment.
