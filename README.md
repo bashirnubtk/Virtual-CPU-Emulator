@@ -37,7 +37,7 @@
 
 ## Weekly Tasks Overview 1
 
-### [Week 1: Project Planning & Setup](Week 1)
+### [Week 1: Project Planning & Setup](https://github.com/bashirnubtk/Virtual-CPU-Emulator/tree/main/Week%201)
 - **Objective:** Define project scope, gather resources, set up development environment.
 - **Tasks:**
   - Outline the features of the virtual CPU.
