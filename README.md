@@ -1,7 +1,7 @@
 <h1>Virtual CPU Emulator</h1>
 
 <h1>Project Description</h1>
-<p>The project will be divided into 10 weeks. Each week, specific tasks will be
+<p>Welcome to the Virtual CPU Emulator project.CPU Virtulization is focuses on creating a virtual model of a computers CPU.This virtual CPU can then be used to run software that was written for a different type of CPU,or to run multiple operating systems simultaneously on a single physical CPU. that was written for a different type of The project will be divided into 10 weeks. Each week, specific tasks will be
     assigned. Groups will be evaluated based on the accuracy, completeness, and depth
     of the work submitted.</p>
 
