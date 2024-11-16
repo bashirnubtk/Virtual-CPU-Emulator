@@ -43,3 +43,5 @@
   - Outline the features of the virtual CPU.
   - Choose a programming language (Python/C++) and tools.
   - Set up version control (e.g., GitHub).
+ 
+### [](https://github.com/bashirnubtk/Virtual-CPU-Emulator/tree/main/week%202)
