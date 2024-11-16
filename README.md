@@ -44,4 +44,11 @@
   - Choose a programming language (Python/C++) and tools.
   - Set up version control (e.g., GitHub).
  
-### [](https://github.com/bashirnubtk/Virtual-CPU-Emulator/tree/main/week%202)
+### [Week 2: Instruction Set Architecture (ISA)](https://github.com/bashirnubtk/Virtual-CPU-Emulator/tree/main/week%202)
+- **Objective:** Design the ISA for the virtual CPU.
+- **Tasks:**
+  - Define basic instructions (ADD, SUB, LOAD, STORE, etc.).
+  - Document the instruction formats.
+  -Create a simple assembler to convert assembly code into machine code.
+
+
