@@ -11,4 +11,8 @@ The ALU (Arithmetic Logic Unit) is a critical component of a CPU, responsible fo
 In a CPU, General-Purpose Registers (GPRs) are small, fast storage locations used to temporarily hold data during processing. These registers are crucial for efficient computation and serve as operands for the ALU.
 
 #### **Design Goals for General-Purpose Registers:**
+ - Store intermediate results and data.
+ - Allow data to be read and written quickly.
+ - Integrate with the ALU for operations.
+
 
