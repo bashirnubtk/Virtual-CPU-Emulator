@@ -17,10 +17,10 @@ In a CPU, General-Purpose Registers (GPRs) are small, fast storage locations use
 
 ### Explanation
 3. **Arithmetic Operations:**
-**ADD:** Adds two operands.
-**SUB:** Subtracts the second operand from the first.
-**MUL:** Multiplies two operands.
-**DIV:** Divides the first operand by the second (integer division).
+   - **ADD:** Adds two operands.
+   - **SUB:** Subtracts the second operand from the first.
+   - **MUL:** Multiplies two operands.
+   - **DIV:** Divides the first operand by the second (integer division).
 4. **Logical Operations:**
 AND: Bitwise AND between operands.
 OR: Bitwise OR between operands.
