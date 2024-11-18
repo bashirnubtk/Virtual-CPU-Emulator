@@ -58,42 +58,42 @@
    - Implement general-purpose registers.
    - Create the program counter and instruction register.
      
-### [Week 4: Instruction Execution]()
+### [Week 4: Instruction Execution](https://github.com/bashirnubtk/Virtual-CPU-Emulator/tree/main/week%204)
  - **Objective:**  Develop the instruction fetch-decode-execute cycle.
  - **Tasks:**
     - Implement the instruction fetching mechanism.
     - Decode instructions and execute them using the ALU and registers.
     - Test with simple programs.
 
-### [Week 5: Memory Management]()
+### [Week 5: Memory Management](https://github.com/bashirnubtk/Virtual-CPU-Emulator/tree/main/week%205)
 - **Objective:** Implement memory management for the virtual CPU.
 - **Tasks:**
   - Set up a simulated memory space.
   - Implement memory read/write operations.
   - Handle address mapping and memory segmentation.
     
-### [Week 6: I/O Operations]()
+### [Week 6: I/O Operations](https://github.com/bashirnubtk/Virtual-CPU-Emulator/tree/main/week%206)
 - **Objective:** Enable basic input/output operations.
 - **Tasks:**
    - Implement simulated I/O devices (keyboard, display).
    - Create I/O instructions and integrate them with the CPU.
    - Test with I/O-intensive programs
 
-### [Week 7: Advanced Features]()
+### [Week 7: Advanced Features](https://github.com/bashirnubtk/Virtual-CPU-Emulator/tree/main/week%207)
 - **Objective:** Add advanced CPU features.
 - **Tasks:**
   - Implement branching and control flow instruction
   - Add support for subroutines and interrupts.
   - Integrate a simple pipeline mechanism.
 
-### [Week 8: Performance Optimization]()
+### [Week 8: Performance Optimization](https://github.com/bashirnubtk/Virtual-CPU-Emulator/tree/main/week%208)
 - **Objective:** Optimize the emulator for better performance.
 - **Tasks:**
    - Profile the emulator to identify bottleneck
    - Optimize critical code paths.
    - Enhance the assembler for better instruction encoding.
 
-### [Week 9: Final Testing & Debugging]()
+### [Week 9: Final Testing & Debugging](https://github.com/bashirnubtk/Virtual-CPU-Emulator/tree/main/week%209)
 - **Objective:** Thoroughly test and debug the emulator.
 - **Tasks:**
   - Test with a variety of assembly programs.
