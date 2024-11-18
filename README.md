@@ -8,7 +8,7 @@
 <h1>Group Members</h1>
     <ul>
        <li>Member 1:<a  href="mailto:bashircse.nubtk@gmail.com">Bashir Alam  </a>ID:11220320963</li>
-       <li>Member 2:<a  href="mailto:ratulraha.04@gmail.com">Shuvo Raha ID:11220320949</li>
+       <li>Member 2:<a  href="mailto:ratulraha.04@gmail.com">Shuvo Raha </a>ID:11220320949</li>
        <li>Member 3:<a  href="mailto:oisheerahman167@gmail.com">Fariha Rahman Oishee </a>ID:11220320967</li>
     </ul>
 <h1>Course Details</h1>
