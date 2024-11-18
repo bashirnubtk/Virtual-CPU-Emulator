@@ -15,4 +15,24 @@ In a CPU, General-Purpose Registers (GPRs) are small, fast storage locations use
  - Allow data to be read and written quickly.
  - Integrate with the ALU for operations.
 
+### Explanation
+3. **Arithmetic Operations:**
+**ADD:** Adds two operands.
+**SUB:** Subtracts the second operand from the first.
+**MUL:** Multiplies two operands.
+**DIV:** Divides the first operand by the second (integer division).
+4. **Logical Operations:**
+AND: Bitwise AND between operands.
+OR: Bitwise OR between operands.
+XOR: Bitwise XOR between operands.
+NOT: Bitwise NOT of the operand.
+5. Comparison (CMP):
+For comparing two operands:
+
+EQUAL: Returns if the two operands are equal.
+LESS: Returns if the first operand is less than the second.
+GREATER: Returns if the first operand is greater than the second.
+6. Error Handling:
+Raises an error if an invalid operation is passed or if division by zero occurs.
+
 
