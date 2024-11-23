@@ -16,9 +16,7 @@ class CPURegisters:
         return instruction
 
     def display_registers(self):
-        """
-        Display the 
-        """
+        
         print(f"Program Counter (PC): {self.program_counter}")
         print(f"Instruction Register (IR): {self.instruction_register}")
 
