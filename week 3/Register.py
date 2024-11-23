@@ -1,9 +1,9 @@
 class CPURegisters:
     def __init__(self, memory_size=256):
        
-        self.program_counter = 0  # Start at address 0
-        self.instruction_register = None  # Holds the current instruction
-        self.memory_size = memory_size  # Simulate memory size
+        self.program_counter = 0  
+        self.instruction_register = None  
+        self.memory_size = memory_size  
 
     def fetch_instruction(self, memory):
        
