@@ -17,8 +17,8 @@ class CPURegisters:
 
     def display_registers(self):
         
-        print(f"Program Counter (PC): {self.program_counter}")
-        print(f"Instruction Register (IR): {self.instruction_register}")
+        print(f"Program Counter : {self.program_counter}")
+        print(f"Instruction Register : {self.instruction_register}")
 
 if __name__ == "__main__":
    
