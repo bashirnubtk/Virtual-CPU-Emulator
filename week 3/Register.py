@@ -22,14 +22,13 @@ class CPURegisters:
         print(f"Program Counter (PC): {self.program_counter}")
         print(f"Instruction Register (IR): {self.instruction_register}")
 
-# Example Usage
 if __name__ == "__main__":
-    # Simulate a small memory with instructions (e.g., 8-bit binary codes)
+   
     memory = [
-        "00010001",  # LOAD R1, 1
-        "00100010",  # STORE R2, 2
-        "00110100",  # ADD R3, R4
-        "11110000",  # HALT
+        "00010001",  
+        "00100010",  
+        "00110100",  
+        "11110000",  
     ]
     
     cpu = CPURegisters(memory_size=len(memory))
@@ -41,4 +40,3 @@ if __name__ == "__main__":
             cpu.display_registers()
     except IndexError as e:
         print(f"Error: {e}")
-
