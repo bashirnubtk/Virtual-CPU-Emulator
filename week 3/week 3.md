@@ -26,13 +26,14 @@ AND: Bitwise AND between operands.
 OR: Bitwise OR between operands.
 XOR: Bitwise XOR between operands.
 NOT: Bitwise NOT of the operand.
-5. Comparison (CMP):
+5. **Comparison (CMP):**
 For comparing two operands:
 
 EQUAL: Returns if the two operands are equal.
 LESS: Returns if the first operand is less than the second.
 GREATER: Returns if the first operand is greater than the second.
-6. Error Handling:
+
+6. **Error Handling:**
 Raises an error if an invalid operation is passed or if division by zero occurs.
 
 
