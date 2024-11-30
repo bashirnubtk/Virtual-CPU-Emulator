@@ -18,7 +18,7 @@
 - Access the memory at the current value of the PC.
 Retrieve the instruction at that address.
 
-5**Increment PC:**
+5.**Increment PC:**
 
 - After fetching, add 1 to the PC (or more, depending on the instruction size). This prepares the PC to fetch the next instruction in the next cycle.
 
