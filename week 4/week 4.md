@@ -1,7 +1,7 @@
 # Week 4: Instruction Execution
 ## Implementing the instruction fetching mechanism
 **Instruction fetching:** The process of retrieving the next instruction from memory, based on the current value of the Program Counter (PC).
-### Steps to Implement Instruction Fetching
+### Implementing Instruction Fetching
 1.**Use the Program Counter (PC):**
 - The PC holds the address of the next instruction to be fetched from memory.
 
@@ -54,7 +54,7 @@ The ALU performs operations based on the instruction's opcode.
 
 ---
 
-### Steps to Decode and Execute Instructions
+### Decode and Execute Instructions
 
 1. **Fetch the Instruction**:
    - The fetched instruction includes an opcode and optional operands.
@@ -73,7 +73,7 @@ The ALU performs operations based on the instruction's opcode.
 
 ---
 
-### Example Instruction Execution Workflow
+### Execution Workflow
 
 #### Instruction: `ADD R1, R2`  
 **Meaning**: Add the values of registers `R1` and `R2` and store the result in the accumulator (`ACC`).
