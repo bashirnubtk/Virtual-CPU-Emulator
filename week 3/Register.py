@@ -1,152 +1,112 @@
-{
-  "nbformat": 4,
-  "nbformat_minor": 0,
-  "metadata": {
-    "colab": {
-      "provenance": [],
-      "authorship_tag": "ABX9TyNkV97SKahLIWSl0qP4yvOW",
-      "include_colab_link": true
-    },
-    "kernelspec": {
-      "name": "python3",
-      "display_name": "Python 3"
-    },
-    "language_info": {
-      "name": "python"
-    }
-  },
-  "cells": [
-    {
-      "cell_type": "markdown",
-      "metadata": {
-        "id": "view-in-github",
-        "colab_type": "text"
-      },
-      "source": [
-        "<a href=\"https://colab.research.google.com/github/bashirnubtk/Virtual-CPU-Emulator/blob/main/week%203/Register.py\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
-      ]
-    },
-    {
-      "cell_type": "code",
-      "execution_count": 1,
-      "metadata": {
-        "id": "CFRuznj6K5wn"
-      },
-      "outputs": [],
-      "source": [
-        "# Instruction Set\n",
-        "INSTRUCTION_SET = {\n",
-        "    'LOAD': '0001',\n",
-        "    'STORE': '0010',\n",
-        "    'ADD': '0011',\n",
-        "    'SUB': '0100',\n",
-        "    'JMP': '0101',\n",
-        "    'HALT': '1111'\n",
-        "}\n",
-        "\n",
-        "# Register Set (4 registers, R0-R3)\n",
-        "REGISTER_SET = {\n",
-        "    'R0': '00',\n",
-        "    'R1': '01',\n",
-        "    'R2': '10',\n",
-        "    'R3': '11'\n",
-        "}\n",
-        "\n",
-        "# CPU Components\n",
-        "class VirtualCPU:\n",
-        "    def __init__(self):\n",
-        "        self.registers = {'R0': 0, 'R1': 0, 'R2': 0, 'R3': 0}  # General-purpose registers\n",
-        "        self.program_counter = 0  # Program Counter\n",
-        "        self.instruction_register = None  # Instruction Register\n",
-        "        self.memory = [0] * 256  # Simulated memory (256 bytes)\n",
-        "\n",
-        "    # Arithmetic Logic Unit (ALU)\n",
-        "    def alu(self, operation, operand1, operand2):\n",
-        "        if operation == 'ADD':\n",
-        "            return operand1 + operand2\n",
-        "        elif operation == 'SUB':\n",
-        "            return operand1 - operand2\n",
-        "        else:\n",
-        "            raise ValueError(f\"Unsupported ALU operation: {operation}\")\n",
-        "\n",
-        "    # Execute a single instruction\n",
-        "    def execute_instruction(self, binary_instruction):\n",
-        "        opcode = binary_instruction[:4]\n",
-        "        if opcode == INSTRUCTION_SET['LOAD']:\n",
-        "            reg = list(REGISTER_SET.keys())[int(binary_instruction[4:6], 2)]\n",
-        "            addr = int(binary_instruction[6:], 2)\n",
-        "            self.registers[reg] = self.memory[addr]\n",
-        "        elif opcode == INSTRUCTION_SET['STORE']:\n",
-        "            reg = list(REGISTER_SET.keys())[int(binary_instruction[4:6], 2)]\n",
-        "            addr = int(binary_instruction[6:], 2)\n",
-        "            self.memory[addr] = self.registers[reg]\n",
-        "        elif opcode == INSTRUCTION_SET['ADD']:\n",
-        "            reg1 = list(REGISTER_SET.keys())[int(binary_instruction[4:6], 2)]\n",
-        "            reg2 = list(REGISTER_SET.keys())[int(binary_instruction[6:8], 2)]\n",
-        "            self.registers[reg1] = self.alu('ADD', self.registers[reg1], self.registers[reg2])\n",
-        "        elif opcode == INSTRUCTION_SET['SUB']:\n",
-        "            reg1 = list(REGISTER_SET.keys())[int(binary_instruction[4:6], 2)]\n",
-        "            reg2 = list(REGISTER_SET.keys())[int(binary_instruction[6:8], 2)]\n",
-        "            self.registers[reg1] = self.alu('SUB', self.registers[reg1], self.registers[reg2])\n",
-        "        elif opcode == INSTRUCTION_SET['JMP']:\n",
-        "            addr = int(binary_instruction[4:], 2)\n",
-        "            self.program_counter = addr\n",
-        "        elif opcode == INSTRUCTION_SET['HALT']:\n",
-        "            return False\n",
-        "        return True\n",
-        "\n",
-        "    # Run a program\n",
-        "    def run_program(self, program):\n",
-        "        self.program_counter = 0\n",
-        "        while self.program_counter < len(program):\n",
-        "            self.instruction_register = program[self.program_counter]\n",
-        "            if not self.execute_instruction(self.instruction_register):\n",
-        "                break\n",
-        "            self.program_counter += 1\n",
-        "\n",
-        "# Assembler functions remain unchanged\n",
-        "def assemble_instruction(line):\n",
-        "    parts = line.strip().replace(\",\", \"\").split()\n",
-        "    opcode = parts[0].upper()\n",
-        "    if opcode not in INSTRUCTION_SET:\n",
-        "        raise ValueError(f\"Invalid instruction: {opcode}\")\n",
-        "\n",
-        "    binary_code = INSTRUCTION_SET[opcode]\n",
-        "    if opcode in ['LOAD', 'STORE']:\n",
-        "        reg = REGISTER_SET[parts[1]]\n",
-        "        addr = format(int(parts[2]), '08b')\n",
-        "        binary_code += reg + addr\n",
-        "    elif opcode in ['ADD', 'SUB']:\n",
-        "        reg1 = REGISTER_SET[parts[1]]\n",
-        "        reg2 = REGISTER_SET[parts[2]]\n",
-        "        binary_code += reg1 + reg2 + '0000'\n",
-        "    elif opcode == 'JMP':\n",
-        "        addr = format(int(parts[1]), '08b')\n",
-        "        binary_code += addr\n",
-        "    elif opcode == 'HALT':\n",
-        "        binary_code += '00000000'\n",
-        "    return binary_code\n",
-        "\n",
-        "def assemble_program(assembly_code):\n",
-        "    machine_code = []\n",
-        "    for line in assembly_code:\n",
-        "        if line.strip() and not line.startswith(';'):\n",
-        "            machine_code.append(assemble_instruction(line))\n",
-        "    return machine_code\n",
-        "\n",
-        "# Example usage\n",
-        "assembly_code = [\n",
-        "    \"LOAD R1, 10\",\n",
-        "    \"ADD R1, R2\",\n",
-        "    \"STORE R1, 100\",\n",
-        "    \"JMP 200\",\n",
-        "    \"HALT\"\n",
-        "]\n",
-        "\n",
-        "cpu = VirtualCPU()\n",
-        "machine_code = assemble_program(assembly_code)\n",
-        "cpu.run_program(machine_code)\n"
-      ]
-    }
-  ]
+# Instruction Set
+INSTRUCTION_SET = {
+    'LOAD': '0001',
+    'STORE': '0010',
+    'ADD': '0011',
+    'SUB': '0100',
+    'JMP': '0101',
+    'HALT': '1111'
 }
+
+# Register Set (4 registers, R0-R3)
+REGISTER_SET = {
+    'R0': '00',
+    'R1': '01',
+    'R2': '10',
+    'R3': '11'
+}
+
+# CPU Components
+class VirtualCPU:
+    def __init__(self):
+        self.registers = {'R0': 0, 'R1': 0, 'R2': 0, 'R3': 0}  # General-purpose registers
+        self.program_counter = 0  # Program Counter
+        self.instruction_register = None  # Instruction Register
+        self.memory = [0] * 256  # Simulated memory (256 bytes)
+
+    # Arithmetic Logic Unit (ALU)
+    def alu(self, operation, operand1, operand2):
+        if operation == 'ADD':
+            return operand1 + operand2
+        elif operation == 'SUB':
+            return operand1 - operand2
+        else:
+            raise ValueError(f"Unsupported ALU operation: {operation}")
+
+    # Execute a single instruction
+    def execute_instruction(self, binary_instruction):
+        opcode = binary_instruction[:4]
+        if opcode == INSTRUCTION_SET['LOAD']:
+            reg = list(REGISTER_SET.keys())[int(binary_instruction[4:6], 2)]
+            addr = int(binary_instruction[6:], 2)
+            self.registers[reg] = self.memory[addr]
+        elif opcode == INSTRUCTION_SET['STORE']:
+            reg = list(REGISTER_SET.keys())[int(binary_instruction[4:6], 2)]
+            addr = int(binary_instruction[6:], 2)
+            self.memory[addr] = self.registers[reg]
+        elif opcode == INSTRUCTION_SET['ADD']:
+            reg1 = list(REGISTER_SET.keys())[int(binary_instruction[4:6], 2)]
+            reg2 = list(REGISTER_SET.keys())[int(binary_instruction[6:8], 2)]
+            self.registers[reg1] = self.alu('ADD', self.registers[reg1], self.registers[reg2])
+        elif opcode == INSTRUCTION_SET['SUB']:
+            reg1 = list(REGISTER_SET.keys())[int(binary_instruction[4:6], 2)]
+            reg2 = list(REGISTER_SET.keys())[int(binary_instruction[6:8], 2)]
+            self.registers[reg1] = self.alu('SUB', self.registers[reg1], self.registers[reg2])
+        elif opcode == INSTRUCTION_SET['JMP']:
+            addr = int(binary_instruction[4:], 2)
+            self.program_counter = addr
+        elif opcode == INSTRUCTION_SET['HALT']:
+            return False
+        return True
+
+    # Run a program
+    def run_program(self, program):
+        self.program_counter = 0
+        while self.program_counter < len(program):
+            self.instruction_register = program[self.program_counter]
+            if not self.execute_instruction(self.instruction_register):
+                break
+            self.program_counter += 1
+
+# Assembler functions remain unchanged
+def assemble_instruction(line):
+    parts = line.strip().replace(",", "").split()
+    opcode = parts[0].upper()
+    if opcode not in INSTRUCTION_SET:
+        raise ValueError(f"Invalid instruction: {opcode}")
+
+    binary_code = INSTRUCTION_SET[opcode]
+    if opcode in ['LOAD', 'STORE']:
+        reg = REGISTER_SET[parts[1]]
+        addr = format(int(parts[2]), '08b')
+        binary_code += reg + addr
+    elif opcode in ['ADD', 'SUB']:
+        reg1 = REGISTER_SET[parts[1]]
+        reg2 = REGISTER_SET[parts[2]]
+        binary_code += reg1 + reg2 + '0000'
+    elif opcode == 'JMP':
+        addr = format(int(parts[1]), '08b')
+        binary_code += addr
+    elif opcode == 'HALT':
+        binary_code += '00000000'
+    return binary_code
+
+def assemble_program(assembly_code):
+    machine_code = []
+    for line in assembly_code:
+        if line.strip() and not line.startswith(';'):
+            machine_code.append(assemble_instruction(line))
+    return machine_code
+
+# Example usage
+assembly_code = [
+    "LOAD R1, 10",
+    "ADD R1, R2",
+    "STORE R1, 100",
+    "JMP 200",
+    "HALT"
+]
+
+cpu = VirtualCPU()
+machine_code = assemble_program(assembly_code)
+cpu.run_program(machine_code)
