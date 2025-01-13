@@ -1,40 +1,152 @@
-class CPURegisters:
-    def __init__(self, memory_size=256):
-       
-        self.program_counter = 0  
-        self.instruction_register = None  
-        self.memory_size = memory_size  
-
-    def fetch_instruction(self, memory):
-       
-        if not (0 <= self.program_counter < self.memory_size):
-            raise IndexError("Program Counter out of memory bounds.")
-        
-        instruction = memory[self.program_counter]
-        self.instruction_register = instruction
-        self.program_counter += 1  # Increment PC for the next instruction
-        return instruction
-
-    def display_registers(self):
-        
-        print(f"Program Counter : {self.program_counter}")
-        print(f"Instruction Register : {self.instruction_register}")
-
-if __name__ == "__main__":
-   
-    memory = [
-        "00010001",  
-        "00100010",  
-        "00110100",  
-        "11110000",  
-    ]
-    
-    cpu = CPURegisters(memory_size=len(memory))
-
-    # Simulate fetching instructions
-    try:
-        while cpu.program_counter < len(memory):
-            print(f"Fetched Instruction: {cpu.fetch_instruction(memory)}")
-            cpu.display_registers()
-    except IndexError as e:
-        print(f"Error: {e}")
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNkV97SKahLIWSl0qP4yvOW",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/bashirnubtk/Virtual-CPU-Emulator/blob/main/week%203/Register.py\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "id": "CFRuznj6K5wn"
+      },
+      "outputs": [],
+      "source": [
+        "# Instruction Set\n",
+        "INSTRUCTION_SET = {\n",
+        "    'LOAD': '0001',\n",
+        "    'STORE': '0010',\n",
+        "    'ADD': '0011',\n",
+        "    'SUB': '0100',\n",
+        "    'JMP': '0101',\n",
+        "    'HALT': '1111'\n",
+        "}\n",
+        "\n",
+        "# Register Set (4 registers, R0-R3)\n",
+        "REGISTER_SET = {\n",
+        "    'R0': '00',\n",
+        "    'R1': '01',\n",
+        "    'R2': '10',\n",
+        "    'R3': '11'\n",
+        "}\n",
+        "\n",
+        "# CPU Components\n",
+        "class VirtualCPU:\n",
+        "    def __init__(self):\n",
+        "        self.registers = {'R0': 0, 'R1': 0, 'R2': 0, 'R3': 0}  # General-purpose registers\n",
+        "        self.program_counter = 0  # Program Counter\n",
+        "        self.instruction_register = None  # Instruction Register\n",
+        "        self.memory = [0] * 256  # Simulated memory (256 bytes)\n",
+        "\n",
+        "    # Arithmetic Logic Unit (ALU)\n",
+        "    def alu(self, operation, operand1, operand2):\n",
+        "        if operation == 'ADD':\n",
+        "            return operand1 + operand2\n",
+        "        elif operation == 'SUB':\n",
+        "            return operand1 - operand2\n",
+        "        else:\n",
+        "            raise ValueError(f\"Unsupported ALU operation: {operation}\")\n",
+        "\n",
+        "    # Execute a single instruction\n",
+        "    def execute_instruction(self, binary_instruction):\n",
+        "        opcode = binary_instruction[:4]\n",
+        "        if opcode == INSTRUCTION_SET['LOAD']:\n",
+        "            reg = list(REGISTER_SET.keys())[int(binary_instruction[4:6], 2)]\n",
+        "            addr = int(binary_instruction[6:], 2)\n",
+        "            self.registers[reg] = self.memory[addr]\n",
+        "        elif opcode == INSTRUCTION_SET['STORE']:\n",
+        "            reg = list(REGISTER_SET.keys())[int(binary_instruction[4:6], 2)]\n",
+        "            addr = int(binary_instruction[6:], 2)\n",
+        "            self.memory[addr] = self.registers[reg]\n",
+        "        elif opcode == INSTRUCTION_SET['ADD']:\n",
+        "            reg1 = list(REGISTER_SET.keys())[int(binary_instruction[4:6], 2)]\n",
+        "            reg2 = list(REGISTER_SET.keys())[int(binary_instruction[6:8], 2)]\n",
+        "            self.registers[reg1] = self.alu('ADD', self.registers[reg1], self.registers[reg2])\n",
+        "        elif opcode == INSTRUCTION_SET['SUB']:\n",
+        "            reg1 = list(REGISTER_SET.keys())[int(binary_instruction[4:6], 2)]\n",
+        "            reg2 = list(REGISTER_SET.keys())[int(binary_instruction[6:8], 2)]\n",
+        "            self.registers[reg1] = self.alu('SUB', self.registers[reg1], self.registers[reg2])\n",
+        "        elif opcode == INSTRUCTION_SET['JMP']:\n",
+        "            addr = int(binary_instruction[4:], 2)\n",
+        "            self.program_counter = addr\n",
+        "        elif opcode == INSTRUCTION_SET['HALT']:\n",
+        "            return False\n",
+        "        return True\n",
+        "\n",
+        "    # Run a program\n",
+        "    def run_program(self, program):\n",
+        "        self.program_counter = 0\n",
+        "        while self.program_counter < len(program):\n",
+        "            self.instruction_register = program[self.program_counter]\n",
+        "            if not self.execute_instruction(self.instruction_register):\n",
+        "                break\n",
+        "            self.program_counter += 1\n",
+        "\n",
+        "# Assembler functions remain unchanged\n",
+        "def assemble_instruction(line):\n",
+        "    parts = line.strip().replace(\",\", \"\").split()\n",
+        "    opcode = parts[0].upper()\n",
+        "    if opcode not in INSTRUCTION_SET:\n",
+        "        raise ValueError(f\"Invalid instruction: {opcode}\")\n",
+        "\n",
+        "    binary_code = INSTRUCTION_SET[opcode]\n",
+        "    if opcode in ['LOAD', 'STORE']:\n",
+        "        reg = REGISTER_SET[parts[1]]\n",
+        "        addr = format(int(parts[2]), '08b')\n",
+        "        binary_code += reg + addr\n",
+        "    elif opcode in ['ADD', 'SUB']:\n",
+        "        reg1 = REGISTER_SET[parts[1]]\n",
+        "        reg2 = REGISTER_SET[parts[2]]\n",
+        "        binary_code += reg1 + reg2 + '0000'\n",
+        "    elif opcode == 'JMP':\n",
+        "        addr = format(int(parts[1]), '08b')\n",
+        "        binary_code += addr\n",
+        "    elif opcode == 'HALT':\n",
+        "        binary_code += '00000000'\n",
+        "    return binary_code\n",
+        "\n",
+        "def assemble_program(assembly_code):\n",
+        "    machine_code = []\n",
+        "    for line in assembly_code:\n",
+        "        if line.strip() and not line.startswith(';'):\n",
+        "            machine_code.append(assemble_instruction(line))\n",
+        "    return machine_code\n",
+        "\n",
+        "# Example usage\n",
+        "assembly_code = [\n",
+        "    \"LOAD R1, 10\",\n",
+        "    \"ADD R1, R2\",\n",
+        "    \"STORE R1, 100\",\n",
+        "    \"JMP 200\",\n",
+        "    \"HALT\"\n",
+        "]\n",
+        "\n",
+        "cpu = VirtualCPU()\n",
+        "machine_code = assemble_program(assembly_code)\n",
+        "cpu.run_program(machine_code)\n"
+      ]
+    }
+  ]
+}
