@@ -48,45 +48,19 @@ To assist with debugging and analysis, we added:
 - **Error Detection and Reporting:** Detects and logs invalid memory access, stack overflows, etc.
 - **Instruction Trace Logs:** Tracks all executed instructions for post-execution review.
 
----
 
-## Instruction Set Updates
+## Week 8 Features Were Integrated
 
-| Instruction  | Opcode | Description                             |
-| ------------ | ------ | --------------------------------------- |
-| `INT`        | `1001` | Triggers an interrupt routine from IVT. |
-| `READ_PORT`  | `1010` | Reads data from an I/O port.            |
-| `WRITE_PORT` | `1011` | Writes data to an I/O port.             |
-
----
-
-## How Week 8 Features Were Integrated
-
-### Merging with Week 6
+###  Week 6
 
 - **Memory Management:** The IVT was integrated into the memory structure. Reserved memory addresses were allocated for storing interrupt routines.
 - **Instruction Execution:** Extended the `decode_execute` function to handle new instructions like `INT`, `READ_PORT`, and `WRITE_PORT`.
 
-### Merging with Week 7
+###  Week 7
 
 - **Stack Management:** Enhanced stack handling for interrupt routines, ensuring the CPU state is saved and restored properly.
 - **Branching and Subroutine Calls:** Incorporated priority switching logic to allow task preemption using the `INT` instruction.
 
----
-
-## Example Program
-
-The following program demonstrates the new features:
-
-```plaintext
-0001000100000010  # LOAD R1, 2
-1011000000000001  # WRITE_PORT 1
-1010000000000001  # READ_PORT 1
-1001000000000001  # INT 1 (Interrupt Service Routine 1)
-1111000000000000  # HALT
-```
-
----
 
 ## Testing
 
@@ -108,10 +82,4 @@ The following program demonstrates the new features:
 Week 8 significantly enhances the virtual CPU by introducing advanced features like interrupt handling, priority-based task management, and I/O simulation. These additions not only make the CPU more realistic but also prepare it for more complex operations in future iterations.
 
 ---
-
-## Next Steps
-
-- Implement multi-threading capabilities for concurrent task execution.
-- Introduce advanced debugging tools like step-by-step execution.
-- Optimize the CPU for better performance with larger programs.
 
