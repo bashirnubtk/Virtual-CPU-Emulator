@@ -97,5 +97,21 @@ This **Virtual CPU Emulator** is designed to provide an educational and function
 
 🚀 **Developed for educational purposes and future enhancements.**
 
-এখানে কি কিছু ফিউচার স্কোপ যুক্ত করবে নাকি বা যুক্ত করলে সেটা কি স্ট্যান্ডার্ড থাকবে!
+Contributing
+
+Fork the repository.
+
+Create a new branch.
+
+Make your changes and test them.
+
+Submit a pull request.
+
+License
+
+This project is licensed under the MIT License.
+
+Author
+
+Developed by Bashir Alam
 
