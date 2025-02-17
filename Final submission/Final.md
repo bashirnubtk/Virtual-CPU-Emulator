@@ -92,11 +92,7 @@ This **Virtual CPU Emulator** is designed to provide an educational and function
 
 🚀 **Developed for educational purposes and future enhancements.**
 
-## Contributing
-1.	Fork the repository.
-2.	Create a new branch.
-3.	Make your changes and test them.
-4.	Submit a pull request.
+
 ## License
 This project is licensed under the **MIT License**.
 ## Author
