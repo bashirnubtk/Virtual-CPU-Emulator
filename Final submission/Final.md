@@ -52,21 +52,16 @@ You can load a sample program into memory and run the CPU:
 
 ```python
 program = [
-    ("LOAD", 0, 10),
-    ("ADD", 1, 0, 0),
-    ("STORE", 20, 1),
-    ("BRANCH_IF_ZERO", 1, 8),
-    ("CALL", 12),
-    ("HALT",),
-    ("LOAD", 2, 20),
-    ("ADD", 2, 2, 0),
-    ("RETURN",),
+    ("LOAD", 0, 10),       # Load value from memory[10] into register 0
+    ("ADD", 1, 0, 0),      # Add register 0 to register 0 and store in register 1
+    ("STORE", 20, 1),      # Store value from register 1 into memory[20]
+    ("BRANCH_IF_ZERO", 1, 8),  # If register 1 is zero, jump to address 8
+    ("CALL", 12),          # Call subroutine at address 12
+    ("HALT",),             # Halt the program
+    ("LOAD", 2, 20),       # Subroutine: Load value from memory[20] into register 2
+    ("ADD", 2, 2, 0),      # Add register 0 to register 2 and store in register 2
+    ("RETURN",),           # Return from subroutine
 ]
-
-cpu = OptimizedVirtualCPU()
-cpu.memory[10] = 5  # Initialize memory
-cpu.load_program(program)
-cpu.run()
 ```
 
 ## Debugging & Performance Optimization
